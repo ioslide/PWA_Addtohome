@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <base href="/">
+  <title>XHY | Resume</title>
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="assets/css/addtohomescreen.css" rel="stylesheet" type="text/css">
+
+  <link rel="shortcut icon" href="favicon.ico">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="XHY | Resume">
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="description" content="XHY | Resume" />
+  <meta name="keywords" content="HTML,CSS,JavaScript,frontend,front-end,XHY" />
+  <meta name="author" content="XHY" />
+  <meta name="abstract" content="XHY - Front-End Developer" />
+  <meta name="designer" content="XHY" />
+  <meta name="rating" content="General" />
+  <meta name="classification" content="Web Programming, Front-End" />
+  <meta name="title" content="XHY ( Front-End Developer )" />
+  <meta name="msapplication-TileColor" content="#26b9c9">
+  <meta name="msapplication-TileImage" content="icon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#26b9c9">
+  <link rel="apple-touch-icon" sizes="57x57" href="icon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="icon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="icon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="icon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="icon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="icon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="icon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="icon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="icon/apple-icon-180x180.png">
+  <link rel="apple-touch-icon" sizes="512x512" href="icon/apple-icon-512x512.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="icon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png">
+  <link rel="manifest" href="manifest.json">
+  <link rel="manifest" href="manifest.webmanifest">
+  <script>
+    if ("serviceWorker" in navigator) {
+      if (navigator.serviceWorker.controller) {
+        console.log("[PWA Builder] active service worker found, no need to register");
+      } else {
+        // Register the service worker
+        navigator.serviceWorker
+          .register("pwabuilder-sw.js", {
+            scope: "./"
+          })
+          .then(function (reg) {
+            console.log("[PWA Builder] Service worker has been registered for scope: " + reg.scope);
+          });
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <div class="ath-container banner-bottom-center">
+    <div class="ath-banner">
+      <div class="ath-banner-cell">
+        <img src="icon/apple-icon-60x60.png" alt="PWA" class="ath-prompt-logo">
+      </div>
+      <div class="ath-banner-title">
+        <p>Install 2048?</p>
+      </div>
+      <div class="ath-banner-cell">
+        <button class="btn btn-cancel btn-link">Not Now</button>
+      </div>
+      <div class="ath-banner-cell">
+        <button class="btn btn-install btn-success">Install</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    var scripts = [
+        "assets/js/addtohomescreen.min.js",
+        "assets/js/local_storage_manager.js",
+        "assets/js/application.js"
+      ],
+      src,
+      script,
+      pendingScripts = [],
+      firstScript = document.scripts[ 0 ];
+
+    if ( typeof Function.prototype.bind !== "function" ) {
+
+      scripts.unshift( "assets/js/polyfills/bind_polyfill.js" );
+
+    }
+
+    if ( "classList" in document.documentElement === false ) {
+
+      scripts.unshift( "assets/js/polyfills/classlist_polyfill.js" );
+
+    }
+
+    if ( !window.requestAnimationFrame ) {
+
+      scripts.unshift( "assets/js/polyfills/animframe_polyfill.js" );
+
+    }
+
+    // Watch scripts load in IE
+    function stateChange() {
+      // Execute as many scripts in order as we can
+
+      var pendingScript;
+
+      while ( pendingScripts[ 0 ] && pendingScripts[ 0 ].readyState == "loaded" ) {
+        pendingScript = pendingScripts.shift();
+        // avoid future loading events from this script (eg, if src changes)
+        pendingScript.onreadystatechange = null;
+        // can"t just appendChild, old IE bug if element isn"t closed
+        firstScript.parentNode.insertBefore( pendingScript, firstScript );
+      }
+
+    }
+
+    // loop through our script urls
+    while ( src = scripts.shift() ) {
+
+      if ( "async" in firstScript ) { // modern browsers
+
+        script = document.createElement( "script" );
+        script.async = false;
+        script.src = src;
+        document.body.appendChild( script );
+
+      } else if ( firstScript.readyState ) { // IE<10
+        // create a script and add it to our todo pile
+        script = document.createElement( "script" );
+        pendingScripts.push( script );
+        // listen for state changes
+        script.onreadystatechange = stateChange;
+        // must set src AFTER adding onreadystatechange listener
+        // else we’ll miss the loaded event for cached scripts
+        script.src = src;
+      } else { // fall back to defer
+        document.write( "<script src=" + src + " defer></" + "script>" );
+      }
+    }
+  </script>
+</body>
+
+</html>
