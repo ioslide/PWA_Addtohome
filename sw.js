@@ -1,7 +1,9 @@
 const version = "1.94",
     preCache = "PRECACHE-" + version,
     cacheList = [
-        "/",
+        "js/addtohomescreen.min.js",
+        "js/application.js",
+        "style/animate.min.css",
     ];
 
 /*  Service Worker Event Handlers */
