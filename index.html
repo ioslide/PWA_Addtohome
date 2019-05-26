@@ -1,14 +1,9 @@
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en-us">
-
 <head>
   <meta charset="utf-8">
   <base href="/">
-  <title>XHY | Resume</title>
-  <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-  <link href="assets/css/addtohomescreen.css" rel="stylesheet" type="text/css">
-
+  <title>Progressive Web App</title>
   <link rel="shortcut icon" href="favicon.ico">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -42,78 +37,51 @@
   <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png">
   <link rel="manifest" href="manifest.json">
   <link rel="manifest" href="manifest.webmanifest">
-  <script>
-    if ("serviceWorker" in navigator) {
-      if (navigator.serviceWorker.controller) {
-        console.log("[PWA Builder] active service worker found, no need to register");
-      } else {
-        // Register the service worker
-        navigator.serviceWorker
-          .register("pwabuilder-sw.js", {
-            scope: "./"
-          })
-          .then(function (reg) {
-            console.log("[PWA Builder] Service worker has been registered for scope: " + reg.scope);
-          });
-      }
-    }
-  </script>
+  <link href="style\bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="style\animate.min.css" rel="stylesheet" type="text/css">
+  <link href="style\addtohomescreen.css" rel="stylesheet" type="text/css">
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
 </head>
-
 <body>
   <div class="ath-container banner-bottom-center">
     <div class="ath-banner">
       <div class="ath-banner-cell">
-        <img src="icon/apple-icon-60x60.png" alt="PWA" class="ath-prompt-logo">
+        <img src="meta\2048-logo-48x48.png" alt="PWA" class="ath-prompt-logo">
       </div>
       <div class="ath-banner-title">
-        <p>Install 2048?</p>
+        <p>Install this PWA?</p>
       </div>
       <div class="ath-banner-cell">
-        <button class="btn btn-cancel btn-link">Not Now</button>
+        <button class="btn btn-cancel btn-link">Later</button>
       </div>
       <div class="ath-banner-cell">
         <button class="btn btn-install btn-success">Install</button>
       </div>
-
     </div>
   </div>
-
   <script>
     var scripts = [
-        "assets/js/addtohomescreen.min.js",
-        "assets/js/local_storage_manager.js",
-        "assets/js/application.js"
+        "js/addtohomescreen.min.js",
+        "js/application.js"
       ],
       src,
       script,
       pendingScripts = [],
       firstScript = document.scripts[ 0 ];
-
     if ( typeof Function.prototype.bind !== "function" ) {
-
-      scripts.unshift( "assets/js/polyfills/bind_polyfill.js" );
-
+      scripts.unshift( "js/polyfills/bind_polyfill.js" );
     }
-
     if ( "classList" in document.documentElement === false ) {
-
-      scripts.unshift( "assets/js/polyfills/classlist_polyfill.js" );
-
+      scripts.unshift( "js/polyfills/classlist_polyfill.js" );
     }
 
     if ( !window.requestAnimationFrame ) {
-
-      scripts.unshift( "assets/js/polyfills/animframe_polyfill.js" );
-
+      scripts.unshift( "js/polyfills/animframe_polyfill.js" );
     }
-
     // Watch scripts load in IE
     function stateChange() {
       // Execute as many scripts in order as we can
-
       var pendingScript;
-
       while ( pendingScripts[ 0 ] && pendingScripts[ 0 ].readyState == "loaded" ) {
         pendingScript = pendingScripts.shift();
         // avoid future loading events from this script (eg, if src changes)
@@ -121,19 +89,14 @@
         // can"t just appendChild, old IE bug if element isn"t closed
         firstScript.parentNode.insertBefore( pendingScript, firstScript );
       }
-
     }
-
     // loop through our script urls
     while ( src = scripts.shift() ) {
-
       if ( "async" in firstScript ) { // modern browsers
-
         script = document.createElement( "script" );
         script.async = false;
         script.src = src;
         document.body.appendChild( script );
-
       } else if ( firstScript.readyState ) { // IE<10
         // create a script and add it to our todo pile
         script = document.createElement( "script" );
@@ -148,6 +111,16 @@
       }
     }
   </script>
-</body>
 
+  <script>
+    if ( "serviceWorker" in navigator ) {
+      navigator.serviceWorker.register( "/sw.js" )
+        .then( function ( registration ) { // Registration was successful
+          console.log( "ServiceWorker registration successful with scope: ", registration.scope );
+        } ).catch( function ( err ) { // registration failed :(
+          console.error( "ServiceWorker registration failed: ", err );
+        } );
+    }
+  </script>
+</body>
 </html>
