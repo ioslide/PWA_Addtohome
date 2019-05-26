@@ -142,8 +142,24 @@
 	}
 
 	.banner-bottom-center {
-		width: 60%;
-		left: 20%;
+		display: none;
+		width: 800px;
+		background-color: #fff;
+		border: 1px solid #e6d6d6;
+		color: #333;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		margin: 0 auto;
+		text-align: center;
+		text-decoration: none;
+		position: fixed;
+		bottom: 0;
+		justify-content: flex-end;
+		flex-direction: column;
+		flex-grow: 1;
+		animation-duration: 1s;
+		animation-fill-mode: both;
 	}
 
 	.ath-container img {
@@ -210,4 +226,23 @@
 	z-index: 2147483642;
 	text-shadow: 0 0.1em 0 #fff;
 	font-size: 1.1em;
+}
+.btn-link {
+    font-weight: 400;
+	color: #007bff;
+    background-color: #ffffff;
+    border: 1px solid #007bff5c!important;
+}
+.btn-link:hover{
+	background-color: #e7e7e7;
+	text-decoration: none
+}
+.btn-success {
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+}
+.btn-success:hover{
+	background-color: #86bd93;
+	text-decoration: none
 }
