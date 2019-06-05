@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <base href="/">
   <title>PWA automatically add to desktop</title>
-  <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-  <link href="assets/css/addtohomescreen.css" rel="stylesheet" type="text/css">
+  <link href="style/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="style/css/addtohomescreen.css" rel="stylesheet" type="text/css">
   <link rel="shortcut icon" href="favicon.ico">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -77,22 +77,22 @@
 
   <script>
     var scripts = [
-      "assets/js/addtohomescreen.min.js",
-      "assets/js/application.js"
+      "/js/addtohomescreen.min.js",
+      "/js/application.js"
     ],
       src,
       script,
       pendingScripts = [],
       firstScript = document.scripts[0];
     if (typeof Function.prototype.bind !== "function") {
-      scripts.unshift("assets/js/polyfills/bind_polyfill.js");
+      scripts.unshift("/js/polyfills/bind_polyfill.js");
     }
     if ("classList" in document.documentElement === false) {
-      scripts.unshift("assets/js/polyfills/classlist_polyfill.js");
+      scripts.unshift("/js/polyfills/classlist_polyfill.js");
     }
 
     if (!window.requestAnimationFrame) {
-      scripts.unshift("assets/js/polyfills/animframe_polyfill.js");
+      scripts.unshift("/js/polyfills/animframe_polyfill.js");
     }
     function stateChange() {
       var pendingScript;
