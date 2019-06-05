@@ -1,6 +1,9 @@
-"use strict";
 
+"use strict";
 ( function () {
+  window.requestAnimationFrame( function () {
+  } );
+
   addToHomescreen( {
     autostart: true,
     autoHide: 0,
@@ -25,7 +28,7 @@
     customCriteria: true,
     displayPace: 0,
     customPrompt: {
-      src: "icon/android-icon-48x48.png"
+      src: "meta/android-icon-48x48.png"
     }
   } );
 
