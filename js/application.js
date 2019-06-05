@@ -28,7 +28,7 @@
     customCriteria: true,
     displayPace: 0,
     customPrompt: {
-      src: "meta/android-icon-48x48.png"
+      src: "/icon/android-icon-48x48.png"
     }
   } );
 
